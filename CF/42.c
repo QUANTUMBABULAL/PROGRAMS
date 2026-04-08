@@ -33,12 +33,14 @@ f(5) =  - 1 + 2 - 3 + 4 - 5 =  - 3
 
 
 #include<stdio.h>
+
 int main(){
-    int n;
-    scanf("%d",&n);
-    if(n%2==0){
-        printf("%d\n",n/2);
-    }else{
-        printf("%d\n",-(n+1)/2);
+    long long n;
+    scanf("%lld",&n);
+
+    if(n % 2 == 0){
+        printf("%lld\n", n / 2);
+    } else {
+        printf("%lld\n", -(n + 1) / 2);
     }
 }
