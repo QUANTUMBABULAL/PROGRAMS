@@ -16,42 +16,44 @@
  *  2. INTEGER k
  */
 
-int compare(const void * a,const void  *b ){
-    int x=*(int*)a;
-    int y=*(int*)b;
-    if(x<y){
-        return 1;
-    }else{
-        return -1;
-    }
-}
+
 int maximumDistinctSubarraySum(int arr_count, int* arr, int k)
 {
-  qsort(arr,arr_count,sizeof(int),compare);
-  int count=0;
-  int temp[]={0};
-  for(int i=0;i<arr_count;i++){
-   for(int j=1;j<arr_count;j++){
-    if(arr[i]!=arr[j]){
-        temp[count]=arr[i];
+//base case:
+    if(k>arr_count){
+    return 0;
     }
-   }
-  }
-  int last_sum=0;
-  int n_sum=0;
-  int temp_n=sizeof(temp)/sizeof(int);
-  for(int i=0;i<temp_n;i++){
-    for(int j=1;j<temp_n;j++){
-        for(int k=2;k<temp_n;k++){
-            n_sum = temp[i]+temp[j]+temp[k];
-        }
-        if(last_sum<n_sum){
-            last_sum=n_sum;
-        }
+    int duplicate=0;
+    int freqarr[10001]={0};
+    int sum=0;
+    int maxsum=0;
+    int left=0;
+    int right=0;
+    while(right<arr_count){
+    sum+=arr[right];
+    freqarr[arr[right]]++;
+    if(freqarr[arr[right]]==2){
+        duplicate++;
     }
-  }
-  return last_sum;
 
+
+    if(right-left+1==k){
+        if(duplicate==0){
+        if(sum>maxsum){
+            maxsum=sum;
+        }}
+        sum-=arr[left];
+        freqarr[arr[left]]--;
+        if(freqarr[arr[left]]==1){
+            duplicate--;
+        }
+        left++;
+
+    }
+
+ right++;
+  }
+  return maxsum;
 }
 
 int main()
