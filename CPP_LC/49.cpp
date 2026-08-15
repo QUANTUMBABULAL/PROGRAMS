@@ -40,29 +40,25 @@ Constraints:
 0 <= strs[i].length <= 100
 strs[i] consists of lowercase English letter
 */
-
-#include <algorithm>
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <unordered_map>
 using namespace std;
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        unordered_map<string,vector<vector<string>>> mp;
+        unordered_map<string,vector<string>> mp;
         for(int i=0;i<strs.size();i++){
-            string  ele =strs[i];
+            string ele = strs[i];
             sort(ele.begin(),ele.end());
-            if(mp.find(ele)!=mp.end()){
-                mp[ele].push_back(strs[i]);
-            }
-            mp[ele]={strs[i]};
+            mp[ele].push_back(strs[i]); 
 
         }
         vector<vector<string>> ans;
-        for(auto p:mp){
-            ans.push_back(p[second]);
+        for(auto p : mp){
+            ans.push_back(p.second);
         }
-        return  ans;
+        return ans ;
     }
 };
