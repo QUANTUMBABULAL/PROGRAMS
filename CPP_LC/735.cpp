@@ -49,36 +49,56 @@ Constraints:
 -1000 <= asteroids[i] <= 1000
 asteroids[i] != 0
 */
-#include<stack>
-#include<vector>
+#include <stack>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
+
         stack<int> st;
-        for(int i=0;i<asteroids.size();i++){
-          if(!st.empty()&&asteroids[i]<0){
-            int top=st.top();
-            st.pop();
-            if(top>abs(asteroids[i])){
-                st.push(top);
-            }else if(top<abs(asteroids[i])){
-                st.push(asteroids[i]);
-            }else{
-                continue;
+        for (int i = 0; i < asteroids.size(); i++) {
+
+            int curr = asteroids[i];
+            bool destroyed = false;
+
+            while (!st.empty() && st.top() > 0 && curr < 0) {
+
+                int top = st.top();
+
+                if (top < abs(curr)) {
+                    // Top asteroid gets destroyed
+                    st.pop();
+                }
+                else if (top == abs(curr)) {
+                    // Both get destroyed
+                    st.pop();
+                    destroyed = true;
+                    break;
+                }
+                else {
+                    // Current asteroid gets destroyed
+                    destroyed = true;
+                    break;
+                }
             }
-          }else{
-            st.push(asteroids[i]);
-          }
+
+            if (!destroyed) {
+                st.push(curr);
+            }
         }
-        int n = st.size();
-        vector <int> ans;
-        for(int j=0;j<n;j++){
+
+        vector<int> ans;
+
+        while (!st.empty()) {
             ans.push_back(st.top());
             st.pop();
         }
-        reverse(ans.begin(),ans.end());
+
+        reverse(ans.begin(), ans.end());
+
         return ans;
-        
     }
-    
 };
