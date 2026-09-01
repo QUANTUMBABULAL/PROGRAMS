@@ -58,7 +58,9 @@ public:
 
             maxSum = max(maxSum, sum);
         }
-
+        
         return (double)maxSum / k;
     }
 };
+
+
