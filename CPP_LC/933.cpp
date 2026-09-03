@@ -29,15 +29,20 @@ recentCounter.ping(100);   // requests = [1, 100], range is [-2900,100], return 
 recentCounter.ping(3001);  // requests = [1, 100, 3001], range is [1,3001], return 3
 recentCounter.ping(3002);  // requests = [1, 100, 3001, 3002], range is [2,3002], return 3
 */
-
+#include<queue>
 class RecentCounter {
 public:
     RecentCounter() {
         
     }
+    queue <int> q;
     
     int ping(int t) {
-        
+        q.push(t);
+        whhile(q.front()<t-3000){
+            q.pop();
+        }
+        return q.size();
     }
 };
 
