@@ -1,20 +1,19 @@
-    #include <iostream>
-    #include <vector>
-    #include <unordered_map>
-    using namespace std;
-    class Soulution{
+#include<unorderd_map>
+#include<iosteam>
+#include<vector>
+using namespacestd;
+class Solution{
     public:
-        vector<int> tsum(vector<int>& arr,int target){
         unordered_map<int,int> mp;
-        for(int i=0;i<arr.size();i++){
-            int need=target-arr[i];
-            if(mp.find(need)!=mp.end()){
-                return {mp[need],i};
+        vector<int> twoSum(vector<int>& nums, int target) {
+            for(int i=0;i<nums.size();i++){
+                int need=target-nums[i];
+                if(mp.count(need)){
+                    return {mp[need],i};
+                }
+                mp[nums[i]]=i;
             }
-            mp[arr[i]]=i;
-        } 
-        return {};
-
+            return {};
         }
-        
-    };
+
+};
