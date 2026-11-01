@@ -35,7 +35,7 @@ int main(){
     for(int x:s){
         if(x=='}'){
             break;
-        }else if(x=='{'||x==','||x==''){
+        }else if(x=='{'||x==','||x==' '){
             continue;
         }else{
             st.insert(x);
